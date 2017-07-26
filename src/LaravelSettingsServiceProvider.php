@@ -16,7 +16,13 @@ class LaravelSettingsServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(SettingsManager::class, function ($app) {
-            return new SettingsManager($app);
+            $settingsManager = new SettingsManager($app);
+
+            if( $app['config']['settings']['autoload'] ) {
+                $settingsManager->load();
+            }
+
+            return $settingsManager;
         });
     }
 
