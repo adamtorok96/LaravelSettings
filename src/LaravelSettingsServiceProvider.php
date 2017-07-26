@@ -23,7 +23,7 @@ class LaravelSettingsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/Config/config.php' => config_path('config.php'),
+            __DIR__.'/Config/config.php' => config_path('settings.php'),
         ]);
     }
 
