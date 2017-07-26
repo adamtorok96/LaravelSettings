@@ -5,8 +5,6 @@
     "license": "MIT",
     "keywords": ["laravel", "settings", "library"],
     "homepage": "https://github.com/adamtorok96/LaravelSettings",
-    "version": "0.1.0",
-    "time": "2017-07-26",
     "authors": [
         {
             "name": "Adam Torok",
@@ -36,5 +34,7 @@
                 "Settings": "AdamTorok96\\LaravelSettings\\Facades\\LaravelSettings"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
