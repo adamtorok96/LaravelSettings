@@ -24,10 +24,12 @@ class JsonSettingDriver extends SettingDriver
 
     protected function read()
     {
-        $this->data = json_decode(
-            Storage::disk($this->getConfig('disk'))->get($this->getPath()),
-            true
-        );
+        $this->data = Storage::disk($this->getConfig('disk'))->exists($this->getPath())
+            ? json_decode(
+                Storage::disk($this->getConfig('disk'))->get($this->getPath()),
+                true)
+            : []
+        ;
     }
 
     private function getPath()
