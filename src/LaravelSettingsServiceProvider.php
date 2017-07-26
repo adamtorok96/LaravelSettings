@@ -18,6 +18,10 @@ class LaravelSettingsServiceProvider extends ServiceProvider
         $this->app->singleton('Settings', function ($app) {
             return new SettingsManager($app);
         });
+
+        $this->app->bind('Settings', function($app) {
+            return new SettingsManager($app);
+        });
     }
 
     public function boot()
@@ -30,7 +34,7 @@ class LaravelSettingsServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            SettingsManager::class
+            'Settings'
         ];
     }
 }

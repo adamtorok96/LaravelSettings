@@ -3,6 +3,8 @@
 namespace AdamTorok96\LaravelSettings;
 
 
+use Illuminate\Support\Facades\Cache;
+
 abstract class SettingDriver
 {
     /**
@@ -10,8 +12,18 @@ abstract class SettingDriver
      */
     protected $data = [];
 
-    public function __construct()
+    /**
+     * @var $config array
+     */
+    protected $config;
+
+    /**
+     * SettingDriver constructor.
+     * @param $config array
+     */
+    public function __construct(array $config)
     {
+        $this->config = $config;
         $this->read();
     }
 
@@ -20,28 +32,69 @@ abstract class SettingDriver
         return $this->data;
     }
 
-    public function set($key, $value = null) {
+    public function set(string $key, $value = null) {
         $this->data[$key] = $value;
+
+        if( $this->hasCache()) {
+            Cache::forever($this->cacheTag($key), $value);
+        }
     }
 
-    public function get($key)
+    public function get(string $key)
     {
+        if( $this->hasCache() && Cache::has($this->cacheTag($key)) ) {
+            return Cache::get($this->cacheTag($key));
+        }
+
         return isset($this->data[$key]) ? $this->data[$key] : null;
     }
 
-    public function has($key)
+    public function has(string $key)
     {
         return isset($this->data[$key]);
     }
 
-    public function delete($key)
+    public function delete(string $key)
     {
         unset($this->data[$key]);
+
+        if( $this->hasCache() ) {
+            Cache::forget($this->cacheTag($key));
+        }
     }
 
-    abstract public function save();
+    public function save()
+    {
+        $this->write();
+    }
+
+    public function load()
+    {
+        $this->read();
+
+        if( $this->hasCache() ) {
+
+            foreach ($this->data as $key => $value) {
+                Cache::forever($this->cacheTag($key), $value);
+            }
+
+        }
+    }
 
     abstract protected function write();
 
     abstract protected function read();
+
+    private function hasCache()
+    {
+        return $this->config['cache'];
+    }
+
+    private function cacheTag($key)
+    {
+        return implode(':', [
+            $this->config['cache_prefix'],
+            $key
+        ]);
+    }
 }

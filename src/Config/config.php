@@ -1,7 +1,10 @@
 <?php
 
 return [
-    'driver' => 'json',
+    'driver'        => 'json',
+    
+    'cache'         => false,
+    'cache_prefix'  => 'settings',
 
     'json'  => [
         'disk'  => 'local',

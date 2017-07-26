@@ -20,6 +20,6 @@ class SettingsManager extends Manager
 
     public function createJsonDriver()
     {
-        return new JsonSettingDriver($this->app['config']['settings']['json']);
+        return new JsonSettingDriver($this->app['config']['settings']);
     }
 }
