@@ -39,13 +39,13 @@ abstract class SettingDriver
         }
     }
 
-    public function get(string $key)
+    public function get(string $key, $default = null)
     {
         if( $this->hasCache() && Cache::has($this->cacheTag($key)) ) {
             return Cache::get($this->cacheTag($key));
         }
 
-        return isset($this->data[$key]) ? $this->data[$key] : null;
+        return isset($this->data[$key]) ? $this->data[$key] : $default;
     }
 
     public function has(string $key)
