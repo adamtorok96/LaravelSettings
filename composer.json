@@ -12,6 +12,12 @@
             "email": "adam.torok96@gmail.com"
         }
     ],
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/adamtorok96/LaravelSettings"
+      }
+    ],
     "require": {
         "php": ">=7.0",
         "illuminate/support": "~5.4"
