@@ -2,6 +2,11 @@
     "name": "adamtorok96/laravel-settings",
     "description": "A settings library for Laravel",
     "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "settings", "library"],
+    "homepage": "https://github.com/adamtorok96/LaravelSettings",
+    "version": "0.1.0",
+    "time": "2017-07-26",
     "authors": [
         {
             "name": "Adam Torok",
