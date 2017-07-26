@@ -1,0 +1,34 @@
+{
+    "name": "adamtorok96/laravel-settings",
+    "description": "A settings library for Laravel",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Adam Torok",
+            "email": "adam.torok96@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdamTorok96\\LaravelSettings\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AdamTorok96\\LaravelSettings\\LaravelSettingsServiceProvider"
+            ],
+            "aliases": {
+                "Settings": "AdamTorok96\\LaravelSettings\\Facades\\LaravelSettings"
+            }
+        }
+    }
+}
