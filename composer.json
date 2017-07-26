@@ -5,6 +5,7 @@
     "license": "MIT",
     "keywords": ["laravel", "settings", "library"],
     "homepage": "https://github.com/adamtorok96/LaravelSettings",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Adam Torok",
