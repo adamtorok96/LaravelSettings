@@ -3,6 +3,8 @@
 return [
     'driver'        => 'json',
     
+    'autoload'      => true,
+
     'cache'         => false,
     'cache_prefix'  => 'settings',
 

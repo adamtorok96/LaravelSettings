@@ -15,11 +15,7 @@ class LaravelSettingsServiceProvider extends ServiceProvider
             __DIR__.'/Config/config.php', 'settings'
         );
 
-        $this->app->singleton('Settings', function ($app) {
-            return new SettingsManager($app);
-        });
-
-        $this->app->bind('Settings', function($app) {
+        $this->app->singleton(SettingsManager::class, function ($app) {
             return new SettingsManager($app);
         });
     }
@@ -33,8 +29,6 @@ class LaravelSettingsServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return [
-            'Settings'
-        ];
+        return [SettingsManager::class];
     }
 }

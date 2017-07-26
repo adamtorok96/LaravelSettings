@@ -24,7 +24,6 @@ abstract class SettingDriver
     public function __construct(array $config)
     {
         $this->config = $config;
-        $this->read();
     }
 
     public function all()
