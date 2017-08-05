@@ -6,16 +6,10 @@ namespace AdamTorok96\LaravelSettings;
 use Carbon\Carbon;
 use DateTime;
 use Exception;
-use Illuminate\Database\MySqlConnection;
 use Illuminate\Support\Str;
 
 class MysqlSettingDriver extends SettingDriver
 {
-    /**
-     * @var $connection MySqlConnection
-     */
-    protected $connection;
-
     public function __construct(array $config)
     {
         parent::__construct($config);
@@ -23,14 +17,14 @@ class MysqlSettingDriver extends SettingDriver
 
     protected function write()
     {
-       foreach ($this->data as $key => $value) {
-           MysqlSettingRecord::updateOrCreate([
-               'key'    => $key
-           ], [
-               'type'   => $this->getType($value),
-               'value'  => $value
-           ]);
-       }
+        foreach ($this->data as $key => $value) {
+            MysqlSettingRecord::updateOrCreate([
+                'key'    => $key
+            ], [
+                'type'   => $this->getType($value),
+                'value'  => $value
+            ]);
+        }
     }
 
     protected function read()
@@ -59,7 +53,7 @@ class MysqlSettingDriver extends SettingDriver
     protected function getType($value)
     {
         if( is_array($value) )
-            throw new Exception('Array is a not supported type!');
+            throw new Exception('Array type is not supported!');
 
         if( !is_object($value) )
             return gettype($value);
