@@ -12,5 +12,9 @@ return [
         'disk'  => 'local',
         'dir'   => '',
         'file'  => 'settings.json'
+    ],
+    
+    'mysql' => [
+        'table' => 'settings'
     ]
 ];

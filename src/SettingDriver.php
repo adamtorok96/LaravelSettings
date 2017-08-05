@@ -86,7 +86,7 @@ abstract class SettingDriver
 
     private function hasCache()
     {
-        return $this->config['cache'];
+        return isset($this->config['cache']) && $this->config['cache'];
     }
 
     private function cacheTag($key)
