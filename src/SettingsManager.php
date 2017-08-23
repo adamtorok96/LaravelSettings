@@ -18,11 +18,17 @@ class SettingsManager extends Manager
         return $this->app['config']['settings']['driver'];
     }
 
+    /**
+     * @return JsonSettingDriver
+     */
     public function createJsonDriver()
     {
         return new JsonSettingDriver($this->app['config']['settings']);
     }
 
+    /**
+     * @return MysqlSettingDriver
+     */
     public function createMySqlDriver()
     {
         return new MysqlSettingDriver($this->app['config']['settings']);

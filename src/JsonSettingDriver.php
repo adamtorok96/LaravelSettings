@@ -7,11 +7,17 @@ use Illuminate\Support\Facades\Storage;
 
 class JsonSettingDriver extends SettingDriver
 {
+    /**
+     *
+     */
     public function save()
     {
         $this->write();
     }
 
+    /**
+     *
+     */
     protected function write()
     {
         Storage::disk($this->getConfig('disk'))
@@ -22,6 +28,9 @@ class JsonSettingDriver extends SettingDriver
         ;
     }
 
+    /**
+     *
+     */
     protected function read()
     {
         $this->data = Storage::disk($this->getConfig('disk'))->exists($this->getPath())
@@ -32,6 +41,9 @@ class JsonSettingDriver extends SettingDriver
         ;
     }
 
+    /**
+     * @return string
+     */
     private function getPath()
     {
         return implode('/', [
@@ -40,6 +52,10 @@ class JsonSettingDriver extends SettingDriver
         ]);
     }
 
+    /**
+     * @param string $key
+     * @return mixed
+     */
     private function getConfig(string $key)
     {
         return $this->config['json'][$key];

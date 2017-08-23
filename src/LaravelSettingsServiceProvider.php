@@ -9,6 +9,9 @@ class LaravelSettingsServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
+    /**
+     *
+     */
     public function register()
     {
         $this->mergeConfigFrom(
@@ -26,6 +29,9 @@ class LaravelSettingsServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     *
+     */
     public function boot()
     {
         $this->publishes([
@@ -35,6 +41,9 @@ class LaravelSettingsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/Migration');
     }
 
+    /**
+     * @return array
+     */
     public function provides()
     {
         return [SettingsManager::class];

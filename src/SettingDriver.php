@@ -26,11 +26,18 @@ abstract class SettingDriver
         $this->config = $config;
     }
 
+    /**
+     * @return array
+     */
     public function all()
     {
         return $this->data;
     }
 
+    /**
+     * @param string $key
+     * @param null $value
+     */
     public function set(string $key, $value = null) {
         $this->data[$key] = $value;
 
@@ -39,6 +46,11 @@ abstract class SettingDriver
         }
     }
 
+    /**
+     * @param string $key
+     * @param null $default
+     * @return mixed|null
+     */
     public function get(string $key, $default = null)
     {
         if( $this->hasCache() && Cache::has($this->cacheTag($key)) ) {
@@ -48,11 +60,18 @@ abstract class SettingDriver
         return isset($this->data[$key]) ? $this->data[$key] : $default;
     }
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public function has(string $key)
     {
         return isset($this->data[$key]);
     }
 
+    /**
+     * @param string $key
+     */
     public function delete(string $key)
     {
         unset($this->data[$key]);
@@ -62,11 +81,17 @@ abstract class SettingDriver
         }
     }
 
+    /**
+     *
+     */
     public function save()
     {
         $this->write();
     }
 
+    /**
+     *
+     */
     public function load()
     {
         $this->read();
@@ -80,15 +105,28 @@ abstract class SettingDriver
         }
     }
 
+    /**
+     * @return mixed
+     */
     abstract protected function write();
 
+    /**
+     * @return mixed
+     */
     abstract protected function read();
 
+    /**
+     * @return bool
+     */
     private function hasCache()
     {
         return isset($this->config['cache']) && $this->config['cache'];
     }
 
+    /**
+     * @param $key
+     * @return string
+     */
     private function cacheTag($key)
     {
         return implode(':', [
